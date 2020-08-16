@@ -1,35 +1,36 @@
-# python code for google chrome
+# python code for dvd player control
 import serial
 import time
 import pyautogui
 
 ser= serial.Serial('COM3',9600)
 time.sleep(3)
+pyautogui.hotkey('alt','win','r')
+pyautogui.press('f')
+pyautogui.press('a')
+
 while 1:
     val =str( ser.readline() )
     
 
-    if 'Scroll_Up' in val :
+    if 'Vol_Up' in val :
         pyautogui.typewrite(['up'])
         print(val)
     
-    if 'Scroll_Down' in val :
+    if 'Vol_Down' in val :
         pyautogui.typewrite(['down'])
         print(val)
 
+    if 'Play/Pause' in val :
+        pyautogui.press('space')
+        print(val)
+
+        
     if 'Forward' in val :
-        pyautogui.typewrite(['browserforward'])
+        pyautogui.typewrite(['right'])
         print(val)
 
         
-    if 'Back' in val :
-        pyautogui.typewrite(['browserback'])
+    if 'Rewind' in val:
+        pyautogui.typewrite(['left'])
         print(val)
-
-        
-    if 'Tab_Change' in val:
-        pyautogui.hotkey('ctrl','tab')
-        print(val)
-
-    if 'Refresh' in val:
-        pyautogui.typewrite(['browserrefresh'])
